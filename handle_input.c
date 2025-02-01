@@ -9,55 +9,9 @@
 /*   Updated: 2025/01/19 17:20:12 by zfarouk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// void    ft_strcpy(char *dst, const char *src, int dstsize)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (i < dstsize - 1)
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	dst[i] = '\0';
-// }
-// char *get_next_arg(char **av, char c)
-// {
-//     static int i;
-//     static int j;
-//     int len;
-//     char *str;
-
-//     len = 0;
-//     while (av[i])
-//     {
-//         while (av[i][j] == c)
-//             j++;
-//         while (av[i][j + len] && av[i][j + len] != c)
-//             len++;
-//         if (len != 0)
-//         {
-//             str = malloc (sizeof (char) * (len + 1));
-//             if (!str)
-//                 return (NULL);
-//             return(ft_strcpy(str, av[i]+j, len+1),j += len , str);
-//         }
-//         i++;
-//         j = 0;
-//     }
-// }
 
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include <unistd.h>
-
-typedef struct stack 
-{
-    long content;
-    struct stack *next;
-}   t_stack;
+#include "push_swap.h"
 
 int count_num(char *str, char c)
 {
@@ -144,7 +98,7 @@ void free_exit(t_stack *a)
         free(a);
         a = current;
     }
-    write(1, "error\n", 6);
+   // write(1, "error\n", 6);
     exit(1);
 }
 
@@ -170,6 +124,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	}
 	current = ft_lstlast(*lst);
 	current->next = new;
+    new->prev = current;
 }
 t_stack	*new_node(long content)
 {
@@ -180,6 +135,7 @@ t_stack	*new_node(long content)
 		return (NULL);
 	node->content = content;
 	node->next = NULL;
+    node->prev = NULL;
 	return (node);
 }
 void check_duplicate(t_stack **a, long content)
@@ -191,11 +147,30 @@ void check_duplicate(t_stack **a, long content)
     current = *a;
     while (current)
     {
-        // printf("%ld  ====> %ld", current->content, content);
         if (current->content == content)
             free_exit(*a);
         current = current->next;
     }
+}
+
+void check_arg(char *str)
+{
+    int i;
+
+    i = 0;
+    if (!str)
+    {
+        write(1, "error\n", 6);
+        exit(1);
+    }
+    while (str[i])
+    {
+        if (str[i] != ' ')
+            return;
+        i++;
+    }
+    write(1, "error\n", 6);
+    exit(1);
 }
 
 void split(t_stack **a, char **av, char c)
@@ -208,9 +183,11 @@ void split(t_stack **a, char **av, char c)
     current = *a;
     num = 0;
     i = 0;
+    
     while (av[i])
     {
         num += count_num(av[i], c);
+        check_arg(av[i]);
         i++;
     }
     i = 0;
@@ -223,25 +200,45 @@ void split(t_stack **a, char **av, char c)
         if (!current)
             free_exit(*a);
         ft_lstadd_back(a, current);
-        i++;
+        i++; 
     }
+}
+
+int size_of_chunk(int size)
+{
+    if (size <= 100)
+        return (13);
+    else
+        return (31);
 }
 
 int main(int ac, char **av)
 {
-    int i;
-    i = 0;
-    char ** final;
     (void)ac;
     t_stack *a;
-    t_stack *current;
+    t_stack *b;
+    // t_stack *current;
 
     a = NULL;
+    b = NULL;
     split(&a, av+1, ' ');
-    while(a)
-    {
-        printf("%ld ", a->content);
-        current = a->next;
-        a = current ;
-    }
+    // current = a;
+    // while(current)
+    // {
+    //     printf("  %ld        \n", current->content);
+    //     current = current->next;
+    // }
+    // printf("============\n");
+    // printf("  a       b \n");
+    int size;
+    size = size_of_chunk(size_lst(a));
+    set_indice(a, size_lst(a));
+    sort_stack(&a, &b, size);
+    // current = a;
+    // while(current)
+    // {
+    //     printf("  %ld\n", current->content);
+    //     current = current->next;
+    // }
+    free_exit(a);
 }
