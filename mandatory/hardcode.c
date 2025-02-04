@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+/**
+ * push_to_b - Moves the smallest number in stack 'a' to stack 'b'.
+ * @a: Pointer to stack 'a'.
+ * @b: Pointer to stack 'b'.
+ * @min: The smallest node in stack 'a'.
+ * 
+ * Rotates 'a' until the smallest number is at the top, 
+ * then pushes it to stack 'b'.
+ */
 void	push_to_b(t_stack **a, t_stack **b, t_stack *min)
 {
 	int		i;
@@ -39,6 +48,13 @@ void	push_to_b(t_stack **a, t_stack **b, t_stack *min)
 	pb(a, b);
 }
 
+/**
+ * only_three - Sorts a stack of three numbers.
+ * @a: Pointer to stack 'a'.
+ * 
+ * Uses simple swaps and rotations to put the three numbers in order.
+ */
+
 void	only_three(t_stack **a)
 {
 	if ((*a)->next->next != NULL)
@@ -54,6 +70,14 @@ void	only_three(t_stack **a)
 		sa(a);
 }
 
+/**
+ * only_four - Sorts a stack of four numbers.
+ * @a: Pointer to stack 'a'.
+ * @b: Pointer to stack 'b'.
+ * 
+ * Moves the smallest number to 'b', sorts the remaining three numbers, 
+ * then moves it back to 'a'.
+ */
 void	only_four(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
@@ -63,6 +87,15 @@ void	only_four(t_stack **a, t_stack **b)
 	only_three(a);
 	pa(a, b);
 }
+
+/**
+ * only_five - Sorts a stack of five numbers.
+ * @a: Pointer to stack 'a'.
+ * @b: Pointer to stack 'b'.
+ * 
+ * Moves the smallest number to 'b', sorts the remaining four numbers, 
+ * then moves it back to 'a'.
+ */
 
 void	only_five(t_stack **a, t_stack **b)
 {
@@ -75,8 +108,13 @@ void	only_five(t_stack **a, t_stack **b)
 }
 
 /**
- * hard_code - sorting a stack smaller than 5 element
-*/
+ * hard_code - Sorts small stacks (3 to 5 numbers).
+ * @a: Pointer to stack 'a'.
+ * @b: Pointer to stack 'b'.
+ * @size: Number of elements in stack 'a'.
+ * 
+ * Calls the correct function to sort based on the stack size.
+ */
 void	hard_code(t_stack **a, t_stack **b, int size)
 {
 	if (size <= 3)

@@ -12,6 +12,13 @@
 
 #include "push_swap.h"
 
+/**
+ * Copies remaining elements from temp[] to arr[].
+ * @arr: Original array.
+ * @temp: Temporary array.
+ * @k: Current index in arr.
+ * @count: Number of elements to copy.
+ */
 void	merge_remaining(int arr[], int temp[], int *k, int count)
 {
 	int	i;
@@ -25,6 +32,13 @@ void	merge_remaining(int arr[], int temp[], int *k, int count)
 	}
 }
 
+/**
+ * Merges two sorted subarrays into one sorted array.
+ * @arr: Array to be sorted.
+ * @left: Start index of the left half.
+ * @med: Midpoint index.
+ * @right: End index of the right half.
+ */
 void	merge(int *arr, int left, int med, int right)
 {
 	int	*row1;
@@ -54,6 +68,12 @@ void	merge(int *arr, int left, int med, int right)
 	free(row2);
 }
 
+/**
+ * Recursively sorts an array using merge sort.
+ * @arr: Array to sort.
+ * @left: Start index.
+ * @right: End index.
+ */
 void	merge_sort(int *arr, int left, int right)
 {
 	int	med;
@@ -67,6 +87,16 @@ void	merge_sort(int *arr, int left, int right)
 	}
 }
 
+/**
+ * put_indice - Assigns an index to each element 
+ * 				in the stack 'a' based on its sorted order.
+ * @a: The stack containing the elements to be indexed.
+ * @arr: The sorted array used for indexing comparison.
+ * @size: The number of elements in the stack.
+ * 
+ * This function updates the 'indice' member of each stack element 
+ * in 'a' based on the position of its value in the sorted array arr[].
+ */
 void	put_indice(t_stack *a, int *arr, int size)
 {
 	int		i;
@@ -89,6 +119,11 @@ void	put_indice(t_stack *a, int *arr, int size)
 	}
 }
 
+/**
+ * Sets indices for stack 'a' based on sorted order.
+ * @a: The stack.
+ * @size: Number of elements in the stack.
+ */
 void	set_indice(t_stack *a, int size)
 {
 	int		*arr;

@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+/**
+ * main - Entry point for the push_swap program.
+ * @ac: Argument count.
+ * @av: Argument vector (array of input strings).
+ * 
+ * 1. Initializes two stacks (a and b).
+ * 2. Parses input arguments and fills stack 'a'.
+ * 3. If the stack is already sorted, it frees memory and exits.
+ * 4. If the stack has 5 or fewer elements, it uses a hard-coded sorting method.
+ * 5. If the stack has more than 5 elements,
+ *			it assigns indices and sorts using a chunk-based algorithm.
+ * 6. Frees allocated memory before exiting.
+ * 
+ * Returns 0 upon successful execution.
+ */
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -38,4 +53,5 @@ int	main(int ac, char **av)
 			free_stack(a);
 		}
 	}
+	return (0);
 }

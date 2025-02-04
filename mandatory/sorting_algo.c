@@ -12,6 +12,13 @@
 
 #include "push_swap.h"
 
+/**
+ * Moves the maximum element from stack 'b' to stack 'a'.
+ * @a: Stack A.
+ * @b: Stack B.
+ * @max: Maximum element in stack B.
+ * @size_b: Number of elements in stack B.
+ */
 void	return_to_a(t_stack **a, t_stack **b, t_stack *max, int size_b)
 {
 	int		mid;
@@ -41,6 +48,11 @@ void	return_to_a(t_stack **a, t_stack **b, t_stack *max, int size_b)
 	pa(a, b);
 }
 
+/**
+ * Pushes elements from stack 'b' to stack 'a', starting with the max element.
+ * @a: Stack A.
+ * @b: Stack B.
+ */
 void	push_to_a(t_stack **a, t_stack **b)
 {
 	t_stack	*current;
@@ -62,6 +74,12 @@ void	push_to_a(t_stack **a, t_stack **b)
 	}
 }
 
+/**
+ * Sorts stack 'a' using chunk-based push and rotate operations.
+ * @a: Stack A.
+ * @b: Stack B.
+ * @chunk: Size of each chunk to be processed.
+ */
 void	sort_stack(t_stack **a, t_stack **b, int chunk)
 {
 	t_stack	*current;

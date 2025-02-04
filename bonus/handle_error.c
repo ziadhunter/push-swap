@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input.c                                     :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zfarouk <zfarouk@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 15:47:42 by zfarouk           #+#    #+#             */
-/*   Updated: 2025/01/19 17:20:12 by zfarouk          ###   ########.fr       */
+/*   Created: 2025/02/03 14:24:19 by zfarouk           #+#    #+#             */
+/*   Updated: 2025/02/03 14:24:21 by zfarouk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /**
  * free_exit - free all the stack and exit from the programe
  * @ *a the stack to free
-*/
+ */
 void	free_exit(t_stack *a)
 {
 	t_stack	*current;
@@ -34,8 +34,8 @@ void	free_exit(t_stack *a)
  * get_next_arg - get the next valid paramet from the argument
  * @ **av double pointer includes all parameters given by the user
  * @ c the split char wich is ' '
- * @ *content a pointer of int take the new paramet  
-*/
+ * @ *content a pointer of int take the new paramet
+ */
 int	get_next_arg(char **av, char c, long *content)
 {
 	static int	i;
@@ -85,7 +85,7 @@ void	check_duplicate(t_stack **a, long content)
 
 /**
  * check_arg - check if the arg is NULL or have only spaces
- * @*str pointer of the argument 
+ * @*str pointer of the argument
  */
 void	check_arg(char *str)
 {
@@ -94,7 +94,7 @@ void	check_arg(char *str)
 	i = 0;
 	if (!str)
 	{
-		write(1, "Error\n", 6);
+		write(1, "error\n", 6);
 		exit(1);
 	}
 	while (str[i])
@@ -103,7 +103,7 @@ void	check_arg(char *str)
 			return ;
 		i++;
 	}
-	write(1, "Error\n", 6);
+	write(1, "error\n", 6);
 	exit(1);
 }
 
@@ -111,7 +111,7 @@ void	check_arg(char *str)
  * split - split all the argument by space
  * @ **a stack that will have all the arguments given by the av
  * @ **av double pointer includes all parameters given by the user
- * @ c characterthat split the argument 
+ * @ c characterthat split the argument
  */
 void	split(t_stack **a, char **av, char c)
 {

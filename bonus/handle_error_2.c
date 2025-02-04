@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra_outils.c                                     :+:      :+:    :+:   */
+/*   handle_error_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zfarouk <zfarouk@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/02 16:47:35 by zfarouk           #+#    #+#             */
-/*   Updated: 2025/02/02 16:48:04 by zfarouk          ###   ########.fr       */
+/*   Created: 2025/02/03 19:15:45 by zfarouk           #+#    #+#             */
+/*   Updated: 2025/02/03 19:15:47 by zfarouk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-/**
- * find_min - Finds the node with the minimum value in a doubly linked list.
- * @a: The first node of the list.
- * Return: A pointer to the node with the minimum value.
- */
-t_stack	*find_min(t_stack *a)
-{
-	t_stack	*min;
-
-	min = a;
-	while (a)
-	{
-		if (min->content > a->content)
-			min = a;
-		a = a->next;
-	}
-	return (min);
-}
+#include "checker.h"
 
 /**
  * free_stack - Frees all nodes in a doubly linked list.
  * @a: The first node of the list.
- * 
+ *
  * Iterates through the list and frees each node.
  */
 void	free_stack(t_stack *a)
@@ -47,36 +28,6 @@ void	free_stack(t_stack *a)
 		free(a);
 		a = current;
 	}
-}
-
-/**
- * count_num - Counts the number of words in a string,
- *				delimited by a specific character.
- * @str: The string to search.
- * @c: The delimiter character.
- * Return: The number of words in the string.
- */
-int	count_num(char *str, char c)
-{
-	int	i;
-	int	word;
-	int	count;
-
-	count = 0;
-	word = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != c && word == 0)
-		{
-			count++;
-			word = 1;
-		}
-		else if (str[i] == c && word == 1)
-			word = 0;
-		i++;
-	}
-	return (count);
 }
 
 /**
@@ -125,7 +76,7 @@ int	is_sorted(t_stack *a)
 	t_stack	*next;
 
 	if (!a)
-		exit(0);
+		return (-1);
 	while (a && a->next)
 	{
 		next = a->next;
@@ -134,4 +85,34 @@ int	is_sorted(t_stack *a)
 		a = next;
 	}
 	return (1);
+}
+
+/**
+ * count_num - Counts the number of words in a string,
+ *				delimited by a specific character.
+ * @str: The string to search.
+ * @c: The delimiter character.
+ * Return: The number of words in the string.
+ */
+int	count_num(char *str, char c)
+{
+	int	i;
+	int	word;
+	int	count;
+
+	count = 0;
+	word = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != c && word == 0)
+		{
+			count++;
+			word = 1;
+		}
+		else if (str[i] == c && word == 1)
+			word = 0;
+		i++;
+	}
+	return (count);
 }
