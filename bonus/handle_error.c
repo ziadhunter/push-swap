@@ -94,7 +94,7 @@ void	check_arg(char *str)
 	i = 0;
 	if (!str)
 	{
-		write(1, "error\n", 6);
+		write(1, "Error\n", 6);
 		exit(1);
 	}
 	while (str[i])
@@ -103,7 +103,7 @@ void	check_arg(char *str)
 			return ;
 		i++;
 	}
-	write(1, "error\n", 6);
+	write(1, "Error\n", 6);
 	exit(1);
 }
 
