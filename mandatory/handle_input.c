@@ -43,6 +43,7 @@ int	get_next_arg(char **av, char c, long *content)
 	int			len;
 
 	len = 0;
+	*content = 0;
 	while (av[i])
 	{
 		while (av[i][j] == c)

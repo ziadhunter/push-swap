@@ -6,7 +6,7 @@
 /*   By: zfarouk <zfarouk@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:47:35 by zfarouk           #+#    #+#             */
-/*   Updated: 2025/02/02 16:48:04 by zfarouk          ###   ########.fr       */
+/*   Updated: 2025/02/04 21:20:22 by zfarouk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,27 @@ int	ft_atol(const char *str, int len, long *content)
 	int	i;
 	int	sign;
 
-	sign = 1;
+	sign = 0;
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i++] == '-')
-			sign = -1;
+			sign = 1;
 		len--;
 	}
-	if (str[i] == ' ')
+	if (str[i] == ' ' || str[i] == '\0')
 		return (-1);
-	*content = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		*content = (*content * 10) + (str[i++] - 48);
-		if (*content > INT_MAX || *content < INT_MIN)
+		if (*content > (long)INT_MAX + sign)
 			return (-1);
 		len--;
 	}
 	if (len != 0)
 		return (-1);
-	*content *= sign;
+	if (sign)
+		*content *= (-1);
 	return (0);
 }
 
